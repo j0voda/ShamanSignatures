@@ -1,0 +1,39 @@
+<div class="mw-form-viewer-content">
+    <div class="form-title">
+        <!-- <h1 style="margin-top: 0; display:table-cell; vertical-align: middle;">Encuesta de Satisfacción</h1> -->
+        <h1 style="margin-top: 0; display:table-cell; vertical-align: middle;">{{nombreEncuesta}}</h1>
+    </div>
+    <div class="mw-title-page" *ngIf="!formSubmitted">
+        <div class="mw-form-description">
+            Por favor, valide la información correspondiente a la consulta. <br>
+            Luego, complete su firma.
+        </div>
+    </div>
+    <div class="mw-title-page" *ngIf="formSubmitted">
+        <div class="mw-form-description">
+            ¡Firma registrada, gracias!
+        </div>
+    </div>
+
+    <div class="mw-form-page" *ngIf="currentPage">
+        <form [formGroup]="encuestaForm">
+            <div class="mw-page-element">
+                <p> Cliente: {{cliente}}</p>
+                <p> Nro. Afiliado: {{afiliado}}</p>
+                <p> Paciente: {{paciente}}</p>
+                <p> Atendido por: {{medico}}</p>
+                <p> Fecha: {{fecha}}</p>
+                <p> Diagnóstico: {{diagnostico}}</p>
+                <p> Ingrese su firma:</p>
+                <canvas #myCanvas id="myCanvas" (touchstart)="startDrawing($event)" (mousedown)="startDrawing($event)" (mousemove)="moved($event)" (mouseup)="cancelEventHandler()" (touchmove)="moved($event)" style="border: 1px solid black; margin-top: 10px;"></canvas> <br>
+                <div id="clear">
+                    <button mat-raised-button type="button" color="primary" style="margin-top: 5px; margin-bottom: 10px;">Limpiar</button>
+                </div>
+            </div>
+
+            <div class="mw-form-action-list" id="save">
+                <button mat-raised-button type="button" color="primary" class="md-raised submit-button">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
